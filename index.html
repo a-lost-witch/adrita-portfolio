@@ -1,0 +1,872 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Adrita Das Gupta | Portfolio Scope</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+/* =========================
+   1. GENERAL STYLING
+========================= */
+
+:root {
+    --bg: #100b1b;
+    --machine: #33283d;
+    --screen: #090715;
+    --purple: #c77dff;
+    --pink: #f1b5ff;
+    --text: #f5eaff;
+    --muted: #bbaacb;
+    --gold: #d9ad78;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    background:
+        radial-gradient(circle at top, #39204e, #100b1b 65%);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 35px 15px;
+}
+
+/* =========================
+   2. OSCILLOSCOPE BODY
+========================= */
+
+.scope {
+    width: 1100px;
+    max-width: 100%;
+    background: linear-gradient(145deg, #51405a, #241c2c);
+    border: 3px solid #8c718e;
+    border-radius: 25px;
+    padding: 22px;
+    box-shadow:
+        0 0 35px #a64dff30,
+        0 25px 70px #0009,
+        inset 0 0 15px #ffffff12;
+}
+
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 10px 15px 20px;
+    border-bottom: 1px solid #8e709b;
+    margin-bottom: 20px;
+}
+
+.brand {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 19px;
+    color: var(--pink);
+    letter-spacing: 1px;
+}
+
+.version {
+    color: var(--purple);
+    font-family: 'Orbitron', sans-serif;
+    font-size: 12px;
+}
+
+/* =========================
+   3. MAIN INSTRUMENT
+========================= */
+
+.instrument {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 210px;
+    gap: 18px;
+}
+
+.screen-frame {
+    background: #17101e;
+    border: 8px solid #716079;
+    border-radius: 22px;
+    padding: 12px;
+    box-shadow: inset 0 0 20px #000;
+}
+
+.screen {
+    min-height: 490px;
+    height: 100%;
+    background-color: var(--screen);
+    background-image:
+        linear-gradient(#a75bff18 1px, transparent 1px),
+        linear-gradient(90deg, #a75bff18 1px, transparent 1px);
+    background-size: 30px 30px;
+    border: 1px solid #b56aff;
+    border-radius: 10px;
+    padding: 18px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 22px #a75bff30;
+}
+
+.screen::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(
+        transparent 50%,
+        #ffffff06 50%
+    );
+    background-size: 100% 4px;
+}
+
+.screen-info {
+    display: flex;
+    justify-content: space-between;
+    color: var(--purple);
+    font-family: 'Orbitron', sans-serif;
+    font-size: 11px;
+    margin-bottom: 25px;
+}
+
+/* =========================
+   4. WAVEFORM
+========================= */
+
+.waveform {
+    width: 100%;
+    height: 110px;
+    overflow: visible;
+    margin: 12px 0;
+}
+
+.waveform path {
+    fill: none;
+    stroke: var(--purple);
+    stroke-width: 3;
+    filter: drop-shadow(0 0 7px var(--purple));
+    stroke-dasharray: 12 5;
+    animation: wave 1.5s linear infinite;
+}
+
+@keyframes wave {
+    to {
+        stroke-dashoffset: -34;
+    }
+}
+
+/* =========================
+   5. HERO CONTENT
+========================= */
+
+.page {
+    display: none;
+    position: relative;
+    z-index: 2;
+    animation: appear 0.4s ease;
+}
+
+.page.active {
+    display: block;
+}
+
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hero {
+    text-align: center;
+    padding: 15px 5px;
+}
+
+.hero h1 {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--pink);
+    font-size: clamp(24px, 4vw, 42px);
+    text-shadow: 0 0 18px #c77dff;
+    margin: 12px 0;
+}
+
+.hero h3 {
+    color: var(--purple);
+    font-size: 14px;
+    letter-spacing: 2px;
+    margin-bottom: 15px;
+}
+
+.hero p {
+    color: var(--muted);
+    line-height: 1.8;
+    font-size: 14px;
+}
+
+.tagline {
+    margin-top: 25px;
+    font-style: italic;
+}
+
+/* =========================
+   6. PAGE CONTENT
+========================= */
+
+.page-title {
+    color: var(--pink);
+    font-family: 'Orbitron', sans-serif;
+    font-size: 23px;
+    margin: 20px 0;
+    text-shadow: 0 0 10px #c77dff;
+}
+
+.content {
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.9;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+    margin-top: 18px;
+}
+
+.card {
+    border: 1px solid #9d62bd;
+    border-radius: 10px;
+    padding: 15px;
+    background: #251932cc;
+    transition: 0.3s;
+}
+
+.card:hover {
+    border-color: var(--pink);
+    box-shadow: 0 0 15px #c77dff55;
+    transform: translateY(-4px);
+}
+
+.card h3 {
+    color: var(--pink);
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.card p {
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.7;
+}
+
+.buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 25px;
+}
+
+.action-btn {
+    background: transparent;
+    border: 1px solid var(--purple);
+    color: var(--pink);
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: inherit;
+    transition: 0.3s;
+    text-decoration: none;
+    font-size: 13px;
+}
+
+.action-btn:hover {
+    background: var(--purple);
+    color: #150c20;
+    box-shadow: 0 0 15px var(--purple);
+}
+
+/* =========================
+   7. SIDE CONTROL PANEL
+========================= */
+
+.controls {
+    background: #211a29;
+    border: 1px solid #8a708e;
+    border-radius: 15px;
+    padding: 15px;
+}
+
+.controls h3 {
+    text-align: center;
+    font-family: 'Orbitron', sans-serif;
+    color: var(--gold);
+    font-size: 12px;
+    margin: 10px 0 15px;
+}
+
+.nav-btn {
+    width: 100%;
+    padding: 12px 8px;
+    margin-bottom: 9px;
+    border: 1px solid #65516f;
+    border-radius: 7px;
+    background: #30243a;
+    color: var(--text);
+    cursor: pointer;
+    text-align: left;
+    font-size: 12px;
+    transition: 0.3s;
+}
+
+.nav-btn:hover,
+.nav-btn.active {
+    border-color: var(--purple);
+    color: var(--pink);
+    background: #51346b;
+    box-shadow: 0 0 10px #a64dff50;
+}
+
+.knob-section {
+    border-top: 1px solid #65516f;
+    margin-top: 18px;
+    padding-top: 12px;
+    text-align: center;
+}
+
+.knob {
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    border: 5px solid #9e829f;
+    margin: 10px auto;
+    background: radial-gradient(circle at 35% 30%, #d9b4d9, #66516e 55%, #241d2b);
+    box-shadow: 0 0 12px #c77dff55;
+    cursor: pointer;
+    position: relative;
+}
+
+.knob::after {
+    content: "";
+    position: absolute;
+    height: 15px;
+    width: 3px;
+    background: var(--pink);
+    top: 4px;
+    left: 50%;
+}
+
+.knob-label {
+    color: var(--muted);
+    font-size: 11px;
+}
+
+.power-btn {
+    margin-top: 20px;
+    background: #39243f;
+    color: var(--pink);
+    border: 1px solid var(--purple);
+    padding: 9px;
+    width: 100%;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+/* =========================
+   8. FOOTER
+========================= */
+
+.footer {
+    margin-top: 20px;
+    padding: 12px;
+    border-top: 1px solid #8a708e;
+    text-align: center;
+    font-size: 11px;
+    color: #bbaacb;
+}
+
+/* =========================
+   9. MOBILE RESPONSIVENESS
+========================= */
+
+@media(max-width: 750px) {
+    .instrument {
+        grid-template-columns: 1fr;
+    }
+
+    .screen {
+        min-height: 460px;
+    }
+
+    .controls {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+    }
+
+    .controls h3 {
+        grid-column: 1 / -1;
+    }
+
+    .nav-btn {
+        margin: 0;
+    }
+
+    .knob-section {
+        grid-column: span 1;
+    }
+
+    .power-btn {
+        grid-column: 1 / -1;
+    }
+}
+
+@media(max-width: 450px) {
+    .scope {
+        padding: 10px;
+    }
+
+    .screen-frame {
+        padding: 5px;
+        border-width: 5px;
+    }
+
+    .screen {
+        padding: 12px;
+    }
+
+    .hero h3 {
+        font-size: 11px;
+    }
+}
+
+/* POWER OFF */
+
+body.off .screen {
+    background: #030205;
+    box-shadow: inset 0 0 40px #000;
+}
+
+body.off .screen > * {
+    visibility: hidden;
+}
+</style>
+</head>
+
+<body>
+
+<div class="scope">
+
+    <!-- TOP HEADER -->
+
+    <header class="topbar">
+        <div class="brand">〰 ADRITA DAS GUPTA</div>
+        <div class="version">PORTFOLIO SCOPE v1.0</div>
+    </header>
+
+    <main class="instrument">
+
+        <!-- CRT SCREEN -->
+
+        <section class="screen-frame">
+            <div class="screen" id="screen">
+
+                <div class="screen-info">
+                    <span id="voltText">CH1 | 1.00 V/div</span>
+                    <span id="timeText">TIME | 1.00 ms/div</span>
+                </div>
+
+                <!-- HOME -->
+
+                <section class="page active" id="home">
+
+                    <div class="hero">
+
+                        <p>Hello, I'm</p>
+
+                        <h1>Adrita Das Gupta</h1>
+
+                        <h3>ECE GRADUATE | VLSI ENTHUSIAST</h3>
+
+                        <svg class="waveform" viewBox="0 0 600 110" preserveAspectRatio="none">
+                            <path d="M0 55
+                            Q30 0 60 55
+                            T120 55
+                            T180 55
+                            T240 55
+                            T300 55
+                            T360 55
+                            T420 55
+                            T480 55
+                            T540 55
+                            T600 55"/>
+                        </svg>
+
+                        <p class="tagline">
+                            An engineer by discipline,<br>
+                            a storyteller by heart,<br>
+                            and a lifelong student of how things work.
+                        </p>
+
+                        <div class="buttons">
+                            <button class="action-btn" onclick="showPage('projects')">
+                                View Projects
+                            </button>
+
+                            <a href="assets/Adrita_CV.pdf"
+                               class="action-btn" download>
+                                Download CV
+                            </a>
+                        </div>
+
+                    </div>
+                </section>
+
+                <!-- ABOUT -->
+
+                <section class="page" id="about">
+                    <h2 class="page-title">// ABOUT ME</h2>
+
+                    <div class="content">
+                        Hello! I'm Adrita, an Electronics and Communication
+                        Engineering graduate currently pursuing my M.Tech
+                        in VLSI at the University of Calcutta.
+
+                        <br><br>
+
+                        I'm interested in semiconductor devices, CMOS
+                        circuits, digital electronics and hardware design.
+
+                        <br><br>
+
+                        I enjoy exploring how electronic systems work,
+                        from individual components to complex integrated
+                        circuits.
+                    </div>
+                </section>
+
+                <!-- PROJECTS -->
+
+                <section class="page" id="projects">
+                    <h2 class="page-title">// PROJECT DATABASE</h2>
+
+                    <div class="cards">
+
+                        <div class="card">
+                            <h3>01. Baggage Tracking</h3>
+                            <p>IoT-based real-time baggage tracking system
+                            with fall detection.</p>
+                        </div>
+
+                        <div class="card">
+                            <h3>02. Smart Irrigation</h3>
+                            <p>IoT-based soil irrigation system using
+                            cloud computing.</p>
+                        </div>
+
+                        <div class="card">
+                            <h3>03. RADAR System</h3>
+                            <p>Arduino UNO-based ultrasonic RADAR
+                            demonstration system.</p>
+                        </div>
+
+                    </div>
+                </section>
+
+                <!-- SKILLS -->
+
+                <section class="page" id="skills">
+                    <h2 class="page-title">// SYSTEM CAPABILITIES</h2>
+
+                    <div class="cards">
+
+                        <div class="card">
+                            <h3>VLSI & Electronics</h3>
+                            <p>Digital Electronics, Analog Electronics,
+                            CMOS, Semiconductor Devices.</p>
+                        </div>
+
+                        <div class="card">
+                            <h3>Programming</h3>
+                            <p>Python, C, SQL, HTML, CSS, JavaScript.</p>
+                        </div>
+
+                        <div class="card">
+                            <h3>EDA & Tools</h3>
+                            <p>PSpice, Vivado, MATLAB, Git, GitHub.</p>
+                        </div>
+
+                    </div>
+                </section>
+
+                <!-- EXPERIENCE -->
+
+                <section class="page" id="experience">
+                    <h2 class="page-title">// EXPERIENCE LOG</h2>
+
+                    <div class="content">
+                        <div class="card">
+                            <h3>Professional Experience</h3>
+                            <p>Add your work experience, internship
+                            details and responsibilities here.</p>
+                        </div>
+
+                        <br>
+
+                        <div class="card">
+                            <h3>Education</h3>
+                            <p>M.Tech – VLSI<br>
+                            University of Calcutta</p>
+                            <br>
+                            <p>B.Tech – Electronics & Communication
+                            Engineering</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- CONTACT -->
+
+                <section class="page" id="contact">
+                    <h2 class="page-title">// ESTABLISH CONNECTION</h2>
+
+                    <div class="content">
+                        Interested in collaborating or discussing
+                        electronics, VLSI and technology?
+
+                        <div class="cards">
+
+                            <div class="card">
+                                <h3>Email</h3>
+                                <p>Connect with me through email.</p>
+                                <a class="action-btn"
+                                   href="mailto:YOUR_EMAIL@example.com">
+                                    Send Email
+                                </a>
+                            </div>
+
+                            <div class="card">
+                                <h3>GitHub</h3>
+                                <p>Explore my projects and repositories.</p>
+                                <a class="action-btn"
+                                   href="https://github.com/a-lost-witch"
+                                   target="_blank">
+                                    GitHub
+                                </a>
+                            </div>
+
+                            <div class="card">
+                                <h3>LinkedIn</h3>
+                                <p>Let's connect professionally.</p>
+                                <a class="action-btn"
+                                   href="YOUR_LINKEDIN_URL"
+                                   target="_blank">
+                                    LinkedIn
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </section>
+
+        <!-- CONTROL PANEL -->
+
+        <aside class="controls">
+
+            <h3>CONTROL PANEL</h3>
+
+            <button class="nav-btn active" data-page="home">
+                ⌂ &nbsp; Home
+            </button>
+
+            <button class="nav-btn" data-page="about">
+                ♙ &nbsp; About
+            </button>
+
+            <button class="nav-btn" data-page="projects">
+                ▣ &nbsp; Projects
+            </button>
+
+            <button class="nav-btn" data-page="skills">
+                ◈ &nbsp; Skills
+            </button>
+
+            <button class="nav-btn" data-page="experience">
+                ▤ &nbsp; Experience
+            </button>
+
+            <button class="nav-btn" data-page="contact">
+                ✉ &nbsp; Contact
+            </button>
+
+            <div class="knob-section">
+
+                <h3>VOLTS / DIV</h3>
+
+                <div class="knob" id="voltKnob"></div>
+
+                <div class="knob-label" id="voltValue">
+                    1.00 V/div
+                </div>
+
+            </div>
+
+            <div class="knob-section">
+
+                <h3>TIME / DIV</h3>
+
+                <div class="knob" id="timeKnob"></div>
+
+                <div class="knob-label" id="timeValue">
+                    1.00 ms/div
+                </div>
+
+            </div>
+
+            <button class="power-btn" id="powerBtn">
+                ◉ POWER ON
+            </button>
+
+        </aside>
+
+    </main>
+
+    <footer class="footer">
+        PORTFOLIO SCOPE v1.0 &nbsp; | &nbsp;
+        DESIGNED BY ADRITA DAS GUPTA
+    </footer>
+
+</div>
+
+<script>
+
+/* =========================
+   1. NAVIGATION
+========================= */
+
+const navButtons = document.querySelectorAll('.nav-btn');
+const pages = document.querySelectorAll('.page');
+
+function showPage(pageName) {
+
+    pages.forEach(page => {
+        page.classList.remove('active');
+    });
+
+    navButtons.forEach(button => {
+        button.classList.remove('active');
+    });
+
+    document.getElementById(pageName).classList.add('active');
+
+    const selectedButton = document.querySelector(
+        `[data-page="${pageName}"]`
+    );
+
+    if (selectedButton) {
+        selectedButton.classList.add('active');
+    }
+}
+
+navButtons.forEach(button => {
+
+    button.addEventListener('click', () => {
+
+        showPage(button.dataset.page);
+
+    });
+
+});
+
+/* =========================
+   2. VOLTS/DIV KNOB
+========================= */
+
+const voltageValues = [
+    "0.10", "0.20", "0.50",
+    "1.00", "2.00", "5.00"
+];
+
+let voltageIndex = 3;
+
+document.getElementById('voltKnob').addEventListener('click', () => {
+
+    voltageIndex = (voltageIndex + 1) % voltageValues.length;
+
+    const value = voltageValues[voltageIndex];
+
+    document.getElementById('voltValue').textContent =
+        value + " V/div";
+
+    document.getElementById('voltText').textContent =
+        "CH1 | " + value + " V/div";
+
+});
+
+/* =========================
+   3. TIME/DIV KNOB
+========================= */
+
+const timeValues = [
+    "0.10", "0.20", "0.50",
+    "1.00", "2.00", "5.00"
+];
+
+let timeIndex = 3;
+
+document.getElementById('timeKnob').addEventListener('click', () => {
+
+    timeIndex = (timeIndex + 1) % timeValues.length;
+
+    const value = timeValues[timeIndex];
+
+    document.getElementById('timeValue').textContent =
+        value + " ms/div";
+
+    document.getElementById('timeText').textContent =
+        "TIME | " + value + " ms/div";
+
+});
+
+/* =========================
+   4. POWER BUTTON
+========================= */
+
+const powerBtn = document.getElementById('powerBtn');
+
+powerBtn.addEventListener('click', () => {
+
+    document.body.classList.toggle('off');
+
+    if (document.body.classList.contains('off')) {
+
+        powerBtn.textContent = "◉ POWER OFF";
+
+    } else {
+
+        powerBtn.textContent = "◉ POWER ON";
+
+    }
+
+});
+
+</script>
+
+</body>
+</html>
